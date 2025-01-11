@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curated FW WiFi Access</title>
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
+        <div class="mb-4 text-center">
+            <h2 class="text-xl font-medium text-gray-800 mb-2">Our local team at Curated FW<br />is excited to host you!</h2>
+            <p class="text-gray-600">Now, let's get you on our WiFi.</p>
+        </div>
+        
+        <form id="wifiForm" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">
+                    Please enter your email to access the WiFi
+                </label>
+                <input
+                    type="email"
+                    id="email"
+                    required
+                    class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                    placeholder="your@email.com"
+                />
+            </div>
+            <button
+                type="submit"
+                style="background-color: #626e60; color: #f2f2eb;"
+                class="w-full py-2 px-4 rounded-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-opacity"
+            >
+                Connect & Relax! 🏠
+            </button>
+        </form>
+
+        <div id="wifiInfo" class="hidden space-y-4">
+            <div class="bg-gray-50 border border-gray-200 rounded-md p-4">
+                <div class="space-y-2">
+                    <p class="font-medium">WiFi Network: YourAirbnbWiFi</p>
+                    <p class="font-medium">Password: YourSecurePassword</p>
+                </div>
+            </div>
+            
+            <div class="mt-4 flex justify-center">
+                <div id="qrcode"></div>
+            </div>
+            
+            <p class="text-sm text-gray-600 text-center mt-2">
+                Scan this QR code with your phone's camera to connect automatically
+            </p>
+        </div>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <script>
+        const form = document.getElementById('wifiForm');
+        const wifiInfo = document.getElementById('wifiInfo');
+        
+        // Your WiFi credentials - UPDATE THESE
+        const wifiNetwork = "Elliott House on Knollton";
+        const wifiPassword = "Elliott2023";
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you could add code to save the email if desired
+            
+            // Hide form, show WiFi info
+            form.classList.add('hidden');
+            wifiInfo.classList.remove('hidden');
+            
+            // Generate QR code
+            const qrContent = `WIFI:T:WPA;S:${wifiNetwork};P:${wifiPassword};;`;
+            new QRCode(document.getElementById("qrcode"), {
+                text: qrContent,
+                width: 192,
+                height: 192
+            });
+        });
+    </script>
+</body>
+</html>
