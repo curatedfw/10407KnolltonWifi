@@ -22,14 +22,14 @@
             <p class="text-gray-600">Now, let's get you on our WiFi.</p>
         </div>
         
-        <form id="wifiForm" class="space-y-4">
+        <form id="wifiForm" class="space-y-4" target="hiddenFrame" method="post" action="YOUR_GOOGLE_FORM_URL">
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">
                     Please enter your email to access the WiFi
                 </label>
                 <input
                     type="email"
-                    id="email"
+                    id="email" name="entry.1088782329" name="entry.YOUR_ENTRY_ID"
                     required
                     class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                     placeholder="your@email.com"
@@ -65,13 +65,16 @@
     <!-- QR Code Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
+    <!-- Hidden iframe for form submission -->
+    <iframe name="hiddenFrame" class="hidden"></iframe>
+    
     <script>
         const form = document.getElementById('wifiForm');
         const wifiInfo = document.getElementById('wifiInfo');
         
         // Your WiFi credentials - UPDATE THESE
-        const wifiNetwork = "Elliott House on Knollton";
-        const wifiPassword = "Elliott2023";
+        const wifiNetwork = "YourAirbnbWiFi";
+        const wifiPassword = "YourSecurePassword";
         
         form.addEventListener('submit', function(e) {
             e.preventDefault();
